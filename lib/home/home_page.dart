@@ -77,70 +77,85 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Card(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          color: themeNotifier.isDark ? neutralGrey : grey,
-                          height: 2.0,
-                          width: MediaQuery.of(context).size.width * 0.30 - 52,
-                        ),
-                        Container(
-                          color: themeNotifier.isDark ? neutralGrey : grey,
-                          height: 22.0,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 4.0, horizontal: 10.0),
-                            child: Text(
-                              'IMAGENS DO AGRONEGÓCIO',
-                              style: TextStyle(
-                                color: themeNotifier.isDark
-                                    ? primaryColor
-                                    : darkGrey,
-                                fontSize: 10.0,
-                                fontWeight: FontWeight.bold,
+          body: Container(
+            decoration: themeNotifier.isDark
+                ? const BoxDecoration(color: darkPrimaryColor)
+                : const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      stops: [0, 0.5],
+                      colors: [secondaryColor, primaryColor],
+                    ),
+                  ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Card(
+                elevation: 10.0,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            color: themeNotifier.isDark ? neutralGrey : grey,
+                            height: 2.0,
+                            width:
+                                MediaQuery.of(context).size.width * 0.30 - 52,
+                          ),
+                          Container(
+                            color: themeNotifier.isDark ? neutralGrey : grey,
+                            height: 22.0,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 4.0, horizontal: 10.0),
+                              child: Text(
+                                'IMAGENS DO AGRONEGÓCIO',
+                                style: TextStyle(
+                                  color: themeNotifier.isDark
+                                      ? primaryColor
+                                      : darkGrey,
+                                  fontSize: 10.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        Container(
-                          color: themeNotifier.isDark ? neutralGrey : grey,
-                          height: 2.0,
-                          width: MediaQuery.of(context).size.width * 0.30 - 52,
-                        ),
-                      ],
+                          Container(
+                            color: themeNotifier.isDark ? neutralGrey : grey,
+                            height: 2.0,
+                            width:
+                                MediaQuery.of(context).size.width * 0.30 - 52,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Observer(
-                    builder: (_) {
-                      return Expanded(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const ClampingScrollPhysics(),
-                          itemCount: _controller.lengthList,
-                          itemBuilder: (_, index) {
-                            var item = _controller.listItems[index];
-                            return Column(
-                              children: <Widget>[
-                                ListItemWidget(item: item),
-                                const SizedBox(
-                                  height: 16.0,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                    Observer(
+                      builder: (_) {
+                        return Expanded(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const ClampingScrollPhysics(),
+                            itemCount: _controller.lengthList,
+                            itemBuilder: (_, index) {
+                              var item = _controller.listItems[index];
+                              return Column(
+                                children: <Widget>[
+                                  ListItemWidget(item: item),
+                                  const SizedBox(
+                                    height: 16.0,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

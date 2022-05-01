@@ -14,7 +14,16 @@ class DrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ThemeModel themeNotifier, child) {
       return Container(
-        color: themeNotifier.isDark ? darkPrimaryColor : secondaryColor,
+        decoration: themeNotifier.isDark
+            ? const BoxDecoration(color: darkPrimaryColor)
+            : const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: [0, 0.3],
+                  colors: [secondaryColor, primaryColor],
+                ),
+              ),
         child: Column(
           children: <Widget>[
             Container(
@@ -73,6 +82,7 @@ class DrawerWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Card(
+                elevation: 10.0,
                 child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: controller.lengthSettings,
