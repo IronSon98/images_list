@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:images_list/core/theme/theme_model.dart';
 import 'package:images_list/core/utils/themes.dart';
 import 'package:images_list/splash.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +13,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      themeMode: ThemeMode.system,
-      darkTheme: Themes().darkTheme,
-      theme: Themes().lightTheme,
-      debugShowCheckedModeBanner: false,
-      home: const Splash(),
+    return ChangeNotifierProvider(
+      create: (_) => ThemeModel(),
+      child: Consumer(
+        builder: (context, ThemeModel themeNotifier, child) {
+          return MaterialApp(
+            theme: themeNotifier.isDark ? Themes.darkTheme : Themes.lightTheme,
+            debugShowCheckedModeBanner: false,
+            home: const Splash(),
+          );
+        },
+      ),
     );
   }
 }
