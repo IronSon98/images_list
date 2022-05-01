@@ -10,23 +10,28 @@ class DrawerItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (_) {
-      return ListTile(
-        title: Text(
-          item.settingName,
-          style: const TextStyle(color: darkGrey, fontSize: 14.0),
-        ),
-        trailing: Switch(
-          activeColor: darkGreen,
-          activeTrackColor: lightGreen,
-          inactiveThumbColor: primaryColor,
-          inactiveTrackColor: darkGrey,
-          value: item.activeSetting,
-          onChanged: (bool value) {
-            item.setActiveSetting(value);
-          },
-        ),
-      );
-    });
+    final brightness = MediaQuery.of(context).platformBrightness;
+    return Observer(
+      builder: (_) {
+        return ListTile(
+          title: Text(
+            item.settingName,
+            style: const TextStyle(color: darkGrey, fontSize: 14.0),
+          ),
+          trailing: Switch(
+            activeColor:
+                brightness == Brightness.light ? darkGreen : neutralGrey,
+            activeTrackColor:
+                brightness == Brightness.light ? lightGreen : orange,
+            inactiveThumbColor: primaryColor,
+            inactiveTrackColor: darkGrey,
+            value: item.activeSetting,
+            onChanged: (bool value) {
+              item.setActiveSetting(value);
+            },
+          ),
+        );
+      },
+    );
   }
 }

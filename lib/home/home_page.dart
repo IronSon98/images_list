@@ -31,6 +31,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final brightness = MediaQuery.of(context).platformBrightness;
     return Scaffold(
       key: scaffoldKey,
       drawer: SizedBox(
@@ -41,7 +42,9 @@ class _HomePageState extends State<HomePage> {
       ),
       appBar: AppBar(
         title: Image.asset(
-          'assets/images/appBarLight.PNG',
+          brightness == Brightness.light
+              ? 'assets/images/appBarLight.PNG'
+              : 'assets/images/appBarDark.PNG',
           fit: BoxFit.cover,
           height: 44.0,
           width: 140.0,
@@ -50,16 +53,20 @@ class _HomePageState extends State<HomePage> {
         leading: Padding(
           padding: const EdgeInsets.only(left: 10.0),
           child: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: [
-                BoxShadow(color: lightGreen),
+                BoxShadow(
+                  color: brightness == Brightness.light
+                      ? lightGreen
+                      : darkPrimaryColor,
+                ),
               ],
             ),
             child: IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.settings,
-                color: darkGrey,
+                color: brightness == Brightness.light ? darkGrey : primaryColor,
               ),
               onPressed: () {
                 scaffoldKey.currentState?.openDrawer();
@@ -68,70 +75,75 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      backgroundColor: secondaryColor,
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Card(
-            child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    color: grey,
-                    height: 2.0,
-                    width: MediaQuery.of(context).size.width * 0.30 - 52,
-                  ),
-                  Container(
-                    color: grey,
-                    height: 22.0,
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
-                      child: Text(
-                        'IMAGENS DO AGRONEGÓCIO',
-                        style: TextStyle(
-                          color: darkGrey,
-                          fontSize: 10.0,
-                          fontWeight: FontWeight.bold,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      color:
+                          brightness == Brightness.light ? grey : neutralGrey,
+                      height: 2.0,
+                      width: MediaQuery.of(context).size.width * 0.30 - 52,
+                    ),
+                    Container(
+                      color:
+                          brightness == Brightness.light ? grey : neutralGrey,
+                      height: 22.0,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 4.0, horizontal: 10.0),
+                        child: Text(
+                          'IMAGENS DO AGRONEGÓCIO',
+                          style: TextStyle(
+                            color: brightness == Brightness.light
+                                ? darkGrey
+                                : primaryColor,
+                            fontSize: 10.0,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    color: grey,
-                    height: 2.0,
-                    width: MediaQuery.of(context).size.width * 0.30 - 52,
-                  ),
-                ],
+                    Container(
+                      color:
+                          brightness == Brightness.light ? grey : neutralGrey,
+                      height: 2.0,
+                      width: MediaQuery.of(context).size.width * 0.30 - 52,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Observer(
-              builder: (_) {
-                return Expanded(
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: const ClampingScrollPhysics(),
-                    itemCount: _controller.lengthList,
-                    itemBuilder: (_, index) {
-                      var item = _controller.listItems[index];
-                      return Column(
-                        children: <Widget>[
-                          ListItemWidget(item: item),
-                          const SizedBox(
-                            height: 16.0,
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                );
-              },
-            ),
-          ],
-        )),
+              Observer(
+                builder: (_) {
+                  return Expanded(
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const ClampingScrollPhysics(),
+                      itemCount: _controller.lengthList,
+                      itemBuilder: (_, index) {
+                        var item = _controller.listItems[index];
+                        return Column(
+                          children: <Widget>[
+                            ListItemWidget(item: item),
+                            const SizedBox(
+                              height: 16.0,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
