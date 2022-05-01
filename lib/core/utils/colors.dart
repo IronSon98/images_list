@@ -32,7 +32,25 @@ const MaterialColor secondaryColor = MaterialColor(
   },
 );
 
+const MaterialColor darkPrimaryColor = MaterialColor(
+  0xff000000,
+  <int, Color>{
+    50: Color(0xff000000),
+    100: Color(0xff000000),
+    200: Color(0xff000000),
+    300: Color(0xff000000),
+    400: Color(0xff000000),
+    500: Color(0xff000000),
+    600: Color(0xff000000),
+    700: Color(0xff000000),
+    800: Color(0xff000000),
+    900: Color(0xff000000)
+  },
+);
+
 const grey = Color(0xffE8E8E8);
+const neutralGrey = Color(0xff828D8C);
 const darkGrey = Color(0xff69747B);
 const lightGreen = Color(0xffCCEEE8);
 const darkGreen = Color(0xff00876E);
+const orange = Color(0xffFFB17B);

@@ -31,8 +31,8 @@ abstract class _HomeControllerBase with Store {
 
   @action
   void initializeSettings() {
-    var setting1 = DrawerItemModel('Exibir duas fotos por linha', false);
-    var setting2 = DrawerItemModel('Tema preto', false);
+    var setting1 = DrawerItemModel(1, 'Exibir duas fotos por linha', false);
+    var setting2 = DrawerItemModel(2, 'Tema preto', false);
     listSettings.add(setting1);
     listSettings.add(setting2);
   }

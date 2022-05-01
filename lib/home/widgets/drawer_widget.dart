@@ -10,39 +10,64 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
     return Container(
-      color: secondaryColor,
+      color: brightness == Brightness.light ? secondaryColor : darkPrimaryColor,
       child: Column(
         children: <Widget>[
           Container(
-            color: primaryColor,
+            color: brightness == Brightness.light
+                ? primaryColor
+                : darkPrimaryColor,
             height: 28.0,
           ),
           Container(
             height: 65.0,
             width: double.maxFinite,
-            color: primaryColor,
+            color: brightness == Brightness.light
+                ? primaryColor
+                : darkPrimaryColor,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 13.33),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  const Text(
+                  Text(
                     'Configurações',
                     style: TextStyle(
                       fontSize: 16.0,
                       fontWeight: FontWeight.bold,
+                      color: brightness == Brightness.light
+                          ? darkPrimaryColor
+                          : primaryColor,
                     ),
                   ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.close,
-                      color: darkGrey,
-                      size: 30.0,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: brightness == Brightness.light
+                                ? primaryColor
+                                : darkGrey,
+                          ),
+                        ],
+                      ),
+                      child: IconButton(
+                        icon: Icon(
+                          Icons.close,
+                          color: brightness == Brightness.light
+                              ? darkGrey
+                              : primaryColor,
+                          size: 30.0,
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
                     ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
                   ),
                 ],
               ),

@@ -8,11 +8,12 @@ class ZoomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
     return Container(
       width: 36.0,
       height: 36.0,
       decoration: BoxDecoration(
-        color: darkGreen,
+        color: brightness == Brightness.light ? darkGreen : darkGrey,
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(5.0),
       ),
