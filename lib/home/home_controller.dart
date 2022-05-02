@@ -29,6 +29,9 @@ abstract class _HomeControllerBase with Store {
   @computed
   int get lengthSettings => listSettings.length;
 
+  @computed
+  bool get changeViewMode => listSettings.elementAt(0).activeSetting;
+
   @action
   void initializeSettings() {
     var setting1 = DrawerItemModel(1, 'Exibir duas fotos por linha', false);
