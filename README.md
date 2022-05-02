@@ -1,16 +1,21 @@
-# images_list
+# AgroList
 
-A new Flutter project.
+Teste Flutter Agrotis.
 
-## Getting Started
+## Requisitos
 
-This project is a starting point for a Flutter application.
+Construir a seguinte tela com o Design enviado.
+Consumir API e listar os itens.
+Realizar reatividade usando MOBX
+Respeitar o Guideline enviado no Figma
+Realizar camada de testes para o Https e Botões.
+API a ser usada: Criar conta em https://unsplash.com/
+Para lista usar imagens do campo “profile_image” -> “medium”
+Ao clicar na imagem, ampliar a mesma para melhor visualização utilizando a versão “large” da API.
 
-A few resources to get you started if this is your first Flutter project:
+https://www.figma.com/proto/Az7p8fWvzxKP7poXpQYtaS/App---Teste?page-id=0%3A1&node-
+i[...]%2C48%2C0.5&scaling=scale-down&starting-point-node-id=18%3A345
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Autor
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Iron Santana
