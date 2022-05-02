@@ -23,7 +23,7 @@ class ListItemWidget extends StatelessWidget {
               : size.width * 0.40,
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: NetworkImage(item.imgLarge),
+              image: NetworkImage(item.imgMedium),
               fit: BoxFit.cover,
               filterQuality: FilterQuality.high,
             ),
@@ -31,10 +31,12 @@ class ListItemWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(5.0),
           ),
         ),
-        const Positioned(
+        Positioned(
           bottom: 16.0,
           right: 16.0,
-          child: ZoomButton(),
+          child: ZoomButton(
+            item: item,
+          ),
         ),
       ],
     );
