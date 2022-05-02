@@ -40,10 +40,18 @@ abstract class _HomeControllerBase with Store {
   @action
   Future<void> getData() async {
     http.Response response = await http.get(url);
-    var teste = json.decode(response.body);
-    data = ObservableList<dynamic>.of(teste['results']);
+    if (response.statusCode == 200) {
+      var teste = json.decode(response.body);
+      data = ObservableList<dynamic>.of(teste['results']);
 
-    _assignData();
+      _assignData();
+    } else {
+      // ignore: avoid_print
+      print(
+        'Erro ao listar as imagens',
+      );
+      //TODO: Criar componente para exibir erro para o usuário
+    }
   }
 
   @action
