@@ -135,21 +135,25 @@ class _HomePageState extends State<HomePage> {
                     Observer(
                       builder: (_) {
                         return Expanded(
-                          child: ListView.builder(
+                          child: GridView.count(
+                            crossAxisCount: _controller.changeViewMode ? 2 : 1,
                             shrinkWrap: true,
                             physics: const ClampingScrollPhysics(),
-                            itemCount: _controller.lengthList,
-                            itemBuilder: (_, index) {
-                              var item = _controller.listItems[index];
-                              return Column(
-                                children: <Widget>[
-                                  ListItemWidget(item: item),
-                                  const SizedBox(
-                                    height: 16.0,
-                                  ),
-                                ],
-                              );
-                            },
+                            children: List.generate(
+                              _controller.lengthList,
+                              (index) {
+                                var item = _controller.listItems[index];
+                                return Column(
+                                  children: [
+                                    ListItemWidget(
+                                      item: item,
+                                      changeViewMode:
+                                          _controller.changeViewMode,
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
                           ),
                         );
                       },
